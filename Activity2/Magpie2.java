@@ -30,15 +30,37 @@ public class Magpie2
 	 */
 	public String getResponse(String statement)
 	{
+
+		if(statement.isEmpty()){
+			return "I can't hear you, can you please speak up?";
+		}
+		//preventing a keyword from being triggered by a word inside a word,
+		// adding spaces to string and accounting for punctuation
+		if(statement.contains("?")){
+			int questionAt = statement.indexOf("?");
+			String statement1 = statement.substring(0, questionAt);
+			statement = " " + statement1 + " ?";
+		}
+		else if (statement.contains(".")){
+			int periodAt = statement.indexOf(".");
+			String statement2 = statement.substring(0, periodAt);
+			statement = " " + statement2 + " .";
+		}
+		else if (statement.contains("!")){
+			int exclaimAt = statement.indexOf("!");
+			String statement3 = statement.substring(0, exclaimAt);
+			statement = " " + statement3 + " !";
+		}
+
 		String response = "";
-		if (statement.indexOf("no") >= 0)
+		if (statement.indexOf(" no ") >= 0)
 		{
 			response = "Why so negative?";
 		}
-		else if (statement.indexOf("mother") >= 0
-				|| statement.indexOf("father") >= 0
-				|| statement.indexOf("sister") >= 0
-				|| statement.indexOf("brother") >= 0)
+		else if (statement.indexOf(" mother ") >= 0
+				|| statement.indexOf(" father ") >= 0
+				|| statement.indexOf(" sister ") >= 0
+				|| statement.indexOf(" brother ") >= 0)
 		{
 			response = "Tell me more about your family.";
 		}
