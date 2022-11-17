@@ -20,7 +20,7 @@ public class MagpieRunner2
 		String statement = in.nextLine();
 		statement = statement.toLowerCase();
 		
-		while (!statement.equals("Bye"))
+		while (!statement.contains("bye"))
 		{
 			System.out.println (maggie.getResponse(statement));
 			statement = in.nextLine();

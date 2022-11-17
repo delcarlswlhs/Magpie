@@ -12,6 +12,9 @@
  */
 public class Magpie2
 {
+	//create shut up variable
+	boolean shutUp = false;
+
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
@@ -30,10 +33,10 @@ public class Magpie2
 	 */
 	public String getResponse(String statement)
 	{
-
 		if(statement.isEmpty()){
 			return "I can't hear you, can you please speak up?";
 		}
+
 		//preventing a keyword from being triggered by a word inside a word,
 		// adding spaces to string and accounting for punctuation
 		if(statement.contains("?")){
@@ -50,6 +53,22 @@ public class Magpie2
 			int exclaimAt = statement.indexOf("!");
 			String statement3 = statement.substring(0, exclaimAt);
 			statement = " " + statement3 + " !";
+		} else {
+			statement = " " + statement + " ";
+		}
+
+		if(statement.contains(" shut up ")){
+			shutUp = true;
+		}
+
+		if (shutUp && (statement.contains(" why ") || statement.contains(" talk"))){
+			return "I won't talk to you until you say you're sorry";
+		} else if (shutUp && (statement.contains("i'm sorry") || statement.contains("im sorry"))){
+			shutUp = false;
+			return "Thank you, you are forgiven.";
+		}
+		else if (shutUp){
+			return "";
 		}
 
 		String response = "";
