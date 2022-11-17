@@ -42,17 +42,32 @@ public class Magpie2
 		if(statement.contains("?")){
 			int questionAt = statement.indexOf("?");
 			String statement1 = statement.substring(0, questionAt);
-			statement = " " + statement1 + " ?";
+			if (statement1.length() != (statement.length() - 1)) {
+				String statement2 = statement.substring(questionAt);
+				statement = " " + statement1 + statement2 + " ?";
+			} else {
+				statement = " " + statement1 + " ?";
+			}
 		}
 		else if (statement.contains(".")){
 			int periodAt = statement.indexOf(".");
-			String statement2 = statement.substring(0, periodAt);
-			statement = " " + statement2 + " .";
+			String statement1 = statement.substring(0, periodAt);
+			if (statement1.length() != (statement.length() - 1)) {
+				String statement2 = statement.substring(periodAt);
+				statement = " " + statement1 + statement2 + " .";
+			} else {
+				statement = " " + statement1 + " .";
+			}
 		}
 		else if (statement.contains("!")){
 			int exclaimAt = statement.indexOf("!");
-			String statement3 = statement.substring(0, exclaimAt);
-			statement = " " + statement3 + " !";
+			String statement1 = statement.substring(0, exclaimAt);
+			if (statement1.length() != (statement.length() - 1)) {
+				String statement2 = statement.substring(exclaimAt);
+				statement = " " + statement1  + statement2 + " !";
+			} else{
+				statement = " " + statement1 + " !";
+			}
 		} else {
 			statement = " " + statement + " ";
 		}
