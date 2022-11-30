@@ -72,6 +72,8 @@ public class Magpie2
 			statement = " " + statement + " ";
 		}
 
+		//causing the chat bot to say nothing if told to shut up, will start responding if
+		// apologised to
 		if(statement.contains(" shut up ")){
 			shutUp = true;
 		}
@@ -85,12 +87,15 @@ public class Magpie2
 		else if (shutUp){
 			return "";
 		}
-
+		//initializing response
 		String response = "";
+
+		//bot responds to the word "no"
 		if (statement.indexOf(" no ") >= 0)
 		{
 			response = "Why so negative?";
 		}
+		//bot responds to talking about family members
 		else if (statement.indexOf(" mother ") >= 0
 				|| statement.indexOf(" father ") >= 0
 				|| statement.indexOf(" sister ") >= 0
@@ -98,6 +103,7 @@ public class Magpie2
 		{
 			response = "Tell me more about your family.";
 		}
+		//bot responds to talking about pets
 		else if(statement.indexOf(" cat ") >= 0
 				|| statement.indexOf(" dog ") >= 0
 				|| statement.indexOf(" hamster ") >= 0
@@ -105,30 +111,39 @@ public class Magpie2
 		{
 			response = "Tell me more about your pets.";
 		}
+		//bot responds to talking about mr. smith
 		else if(statement.indexOf(" mr. smith ") >= 0)
 		{
 			response = "I know Mr. Smith. He is a good teacher.";
 		}
+		//bot responds when asked its name
 		else if(statement.indexOf(" your name ") >= 0)
 		{
 			response = "My name is Simen.";
 		}
+		//bot responds when someone says "good"
+		//so if bot asks how user is it has a response to their answer
 		else if(statement.indexOf(" good ") >= 0)
 		{
 			response = "I'm glad.";
 		}
+		//bot responds when someone says "bad"
+		//so if bot asks how user is it has a response to their answer
 		else if(statement.indexOf(" bad ") >= 0)
 		{
 			response = "I'm sorry you feel that way.";
 		}
+		//bot responds when someone says "hi"
 		else if(statement.indexOf(" hi ") >= 0)
 		{
 			response = "Hello, how is your day?";
 		}
+		//bot responds when user says "hello"
 		else if(statement.indexOf(" hello ") >= 0)
 		{
 			response = "Hi, how is your day?";
 		}
+		//if user says something else, bot will generate a random response
 		else
 		{
 			response = getRandomResponse();
@@ -142,11 +157,13 @@ public class Magpie2
 	 */
 	private String getRandomResponse()
 	{
+		//gets a random response by choosing a random number including 0 through 5
 		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
 		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
-		
+
+		//random responses:
 		if (whichResponse == 0)
 		{
 			response = "Interesting, tell me more.";
